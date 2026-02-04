@@ -1,32 +1,42 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   const yesBtn = document.getElementById("yesBtn");
   const noBtn = document.getElementById("noBtn");
   const music = document.getElementById("bgMusic");
-  const content = document.getElementById("content");
+  const question = document.getElementById("question");
+  const subtext = document.getElementById("subtext");
 
-  // YES BUTTON
+  let escapeCount = 0;
+
   yesBtn.addEventListener("click", () => {
     music.volume = 0.6;
     music.play();
 
-    content.innerHTML = `
-      <div class="container">
-        <h1>YAYYYY 💘💘💘</h1>
-        <p>I knew you'd say yes 😉</p>
-        <p>Happy Valentine's Day ❤️</p>
-      </div>
+    document.querySelector(".container").innerHTML = `
+      <h1 class="glow">YAYYYY 💕💖</h1>
+      <p>I knew you’d say yes 😘</p>
+      <p>You’re officially my Valentine ❤️</p>
     `;
   });
 
-  // NO BUTTON RUNS AWAY
   noBtn.addEventListener("mouseover", () => {
+    escapeCount++;
+
     const x = Math.random() * (window.innerWidth - noBtn.clientWidth);
     const y = Math.random() * (window.innerHeight - noBtn.clientHeight);
 
     noBtn.style.position = "absolute";
-    noBtn.style.left = `${x}px`;
-    noBtn.style.top = `${y}px`;
-  });
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
 
+    if (escapeCount === 3) {
+      subtext.textContent = "Why are you running? 😭";
+    }
+    if (escapeCount === 6) {
+      subtext.textContent = "Okay this is getting suspicious 😤";
+    }
+    if (escapeCount >= 9) {
+      noBtn.style.display = "none";
+      subtext.textContent = "No option removed. Problem solved 😌";
+    }
+  });
 });
