@@ -1,62 +1,53 @@
-const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
-const music = document.getElementById("bgMusic");
+const yesBtn = document.getElementById("yesBtn");
+const crashBtn = document.getElementById("crashBtn");
 const card = document.getElementById("card");
-const confetti = document.getElementById("confetti");
 
-let noCount = 0;
+const errorSound = document.getElementById("errorSound");
+const boopSound = document.getElementById("boopSound");
 
-/* ---------- NO BUTTON TROLL ---------- */
+let noClicks = 0;
+
+/* NO BUTTON TELEPORT */
 noBtn.addEventListener("click", () => {
-  noCount++;
+  noClicks++;
 
-  const x = Math.random() * (window.innerWidth - 120);
-  const y = Math.random() * (window.innerHeight - 60);
+  errorSound.play();
 
-  noBtn.style.position = "absolute";
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
+  card.classList.add("shake");
+  setTimeout(() => card.classList.remove("shake"), 400);
 
-  if (noCount === 3) {
-    noBtn.textContent = "STOP 😭";
-  }
-  if (noCount === 6) {
-    noBtn.textContent = "WHY U LIKE THIS 😭";
-  }
-  if (noCount === 9) {
-    noBtn.remove();
+  const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+  const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+  noBtn.style.position = "fixed";
+  noBtn.style.left = `${x}px`;
+  noBtn.style.top = `${y}px`;
+
+  if (noClicks >= 5) {
+    noBtn.innerText = "JUST CLICK YES 😭";
   }
 });
 
-/* ---------- YES BUTTON TROLL + REWARD ---------- */
+/* YES BUTTON (FINAL REWARD) */
 yesBtn.addEventListener("click", () => {
-  music.volume = 0.7;
-  music.play();
-
-  // fake delay troll
+  boopSound.play();
   card.innerHTML = `
-    <h1>Processing answer… ⏳</h1>
-    <p>Verifying feelings…</p>
+    <h1>🎉 YOU'RE STUCK WITH ME 💍</h1>
+    <p>No refunds. No returns. Lifetime warranty 😌</p>
   `;
+});
+
+/* FAKE CRASH BUTTON */
+crashBtn.addEventListener("click", () => {
+  const crash = document.getElementById("crashScreen");
+  crash.style.display = "flex";
 
   setTimeout(() => {
-    explodeHearts();
-    card.innerHTML = `
-      <h1>You’re stuck with me now 💍</h1>
-      <p>Happy Valentine’s Day ❤️</p>
-    `;
-  }, 2200);
+    crash.innerHTML = "<h1>JK 😈</h1><p>You really clicked that?</p>";
+  }, 1500);
+
+  setTimeout(() => {
+    crash.style.display = "none";
+  }, 3000);
 });
-
-/* ---------- CONFETTI + HEART RAIN ---------- */
-function explodeHearts() {
-  for (let i = 0; i < 80; i++) {
-    const span = document.createElement("span");
-    span.textContent = Math.random() > 0.5 ? "❤️" : "💖";
-    span.style.left = Math.random() * 100 + "vw";
-    span.style.animationDuration = 2 + Math.random() * 3 + "s";
-    confetti.appendChild(span);
-
-    setTimeout(() => span.remove(), 5000);
-  }
-}
