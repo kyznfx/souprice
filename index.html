@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>For You 💗</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Hey You 💗</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="page-one">
-  <div class="container intro">
-    <h1 class="glow">Hey… 💕</h1>
-    <p>I didn’t just buy something.</p>
-    <p>I <span class="highlight">built</span> this for you.</p>
 
-    <button id="startBtn" class="primary-btn">Open 💌</button>
+  <div class="card intro">
+    <h1>Hey… 💕</h1>
+    <p>I made something just for you</p>
+    <button id="startBtn">Open 💌</button>
   </div>
 
   <script>
-    document.getElementById("startBtn").addEventListener("click", () => {
+    document.getElementById("startBtn").onclick = () => {
       document.body.classList.add("fade-out");
       setTimeout(() => {
         window.location.href = "valentine.html";
-      }, 800);
-    });
+      }, 700);
+    };
   </script>
+
 </body>
 </html>
