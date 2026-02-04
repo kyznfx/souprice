@@ -9,24 +9,23 @@
 <body class="page-two">
 
   <!-- Sounds -->
-  <audio id="errorSound" src="https://www.myinstants.com/media/sounds/windows-error.mp3"></audio>
-  <audio id="boopSound" src="https://www.myinstants.com/media/sounds/pop.mp3"></audio>
+  <audio id="boop" src="https://www.myinstants.com/media/sounds/pop.mp3"></audio>
+  <audio id="error" src="https://www.myinstants.com/media/sounds/windows-error.mp3"></audio>
 
-  <div class="container" id="card">
-    <h1 id="question">Will you be my Valentine? ❤️</h1>
-    <p id="subtext">Choose wisely 😏</p>
+  <div class="card main-card" id="card">
+    <h1 id="title">Will you be my Valentine? ❤️</h1>
+    <p id="subtitle">There is only one correct answer 😈</p>
 
     <div class="buttons">
       <button id="yesBtn">YES 💖</button>
       <button id="noBtn">NO 😭</button>
-      <button id="crashBtn">DO NOT CLICK ☠️</button>
+      <button id="fakeCrash">DO NOT CLICK ☠️</button>
     </div>
   </div>
 
-  <!-- Fake crash overlay -->
   <div id="crashScreen">
-    <h1>💥 SYSTEM FAILURE 💥</h1>
-    <p>Heart.exe has stopped responding</p>
+    <h1>💥 SYSTEM ERROR 💥</h1>
+    <p>Heart.exe not responding</p>
   </div>
 
   <script src="script.js"></script>
