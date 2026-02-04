@@ -1,114 +1,26 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-/* ===== PAGE 1 ===== */
-.page-one {
-  height: 100vh;
-  background: linear-gradient(135deg, #ffd6e8, #ff9a9e);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 0.7s ease;
-}
-
-.fade-out {
-  opacity: 0;
-}
-
-/* ===== PAGE 2 ===== */
-.page-two {
-  height: 100vh;
-  background: radial-gradient(circle at top, #ff2f68, #12000a);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
-}
-
-/* ===== CARDS ===== */
-.card {
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(18px);
-  border-radius: 30px;
-  padding: 60px 80px;
-  text-align: center;
-  color: white;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.45);
-  animation: pop 1s ease;
-}
-
-.card h1 {
-  font-size: 2.8rem;
-  margin-bottom: 15px;
-}
-
-.card p {
-  opacity: 0.85;
-  margin-bottom: 30px;
-}
-
-/* ===== BUTTONS ===== */
-.buttons {
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-}
-
-button {
-  padding: 16px 40px;
-  border-radius: 40px;
-  border: none;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-button.yes {
-  background: linear-gradient(135deg, #ff4d6d, #ff9aa2);
-  color: white;
-}
-
-button.yes:hover {
-  transform: scale(1.15);
-}
-
-button.no {
-  background: white;
-  color: #ff2f68;
-}
-
-/* ===== FLOATING HEARTS ===== */
-#hearts-layer span {
-  position: absolute;
-  bottom: -40px;
+.floating-heart {
+  position: fixed;
+  bottom: -10px;
   font-size: 24px;
-  animation: floatUp linear infinite;
-  opacity: 0.8;
+  animation: floatUp linear forwards;
+  pointer-events: none;
 }
 
 @keyframes floatUp {
   from {
-    transform: translateY(0) scale(0.8);
+    transform: translateY(0);
     opacity: 1;
   }
   to {
-    transform: translateY(-120vh) scale(1.4);
+    transform: translateY(-110vh);
     opacity: 0;
   }
 }
 
-@keyframes pop {
-  from {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+#yesBtn {
+  transition: transform 0.3s ease;
+}
+
+#noBtn {
+  transition: transform 0.2s ease;
 }
