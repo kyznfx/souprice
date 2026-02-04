@@ -24,3 +24,68 @@
 #noBtn {
   transition: transform 0.2s ease;
 }
+/* SHAKE */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-6px); }
+  100% { transform: translateX(0); }
+}
+
+/* CONFETTI */
+.confetti {
+  position: fixed;
+  top: -10px;
+  width: 8px;
+  height: 14px;
+  background: hsl(calc(360 * var(--h)), 100%, 60%);
+  animation: fall 4s linear forwards;
+}
+
+.confetti:nth-child(n) {
+  --h: calc(Math.random());
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+  }
+}
+
+/* HEART RAIN */
+.heart {
+  position: fixed;
+  top: -10px;
+  font-size: 24px;
+  animation: heartFall 4s linear forwards;
+}
+
+@keyframes heartFall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+/* BIG YES TEXT */
+.big-text {
+  font-size: 3rem;
+  animation: pop 1s ease infinite alternate;
+}
+
+@keyframes pop {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+/* PULSING BACKGROUND */
+.pulse-bg {
+  animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+  from { background-color: #ff4d6d; }
+  to { background-color: #ff8fab; }
+}
+
