@@ -2,24 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", system-ui, sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* ---------- PAGE 1 ---------- */
-.page-one {
-  height: 100vh;
-  background: linear-gradient(135deg, #ffd6e8, #ff9a9e);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 0.7s ease;
-}
-
-.fade-out {
-  opacity: 0;
-}
-
-/* ---------- PAGE 2 ---------- */
+/* PAGE 2 BACKGROUND */
 .page-two {
   height: 100vh;
   background: radial-gradient(circle at top, #ff4d6d, #1a0011);
@@ -27,45 +13,58 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  animation: pulseBg 6s infinite alternate;
 }
 
-/* ---------- CARD ---------- */
+/* CARD */
 .container {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(18px);
-  padding: 55px 75px;
-  border-radius: 28px;
+  padding: 50px 70px;
+  border-radius: 30px;
   text-align: center;
-  color: #fff;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.45);
-  animation: pop 0.9s ease;
+  color: white;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  transition: transform 0.2s;
+}
+
+/* SHAKE EFFECT */
+.shake {
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  50% { transform: translateX(8px); }
+  75% { transform: translateX(-8px); }
+  100% { transform: translateX(0); }
 }
 
 h1 {
-  font-size: 2.7rem;
+  font-size: 2.5rem;
   margin-bottom: 15px;
 }
 
 p {
+  margin-bottom: 30px;
   font-size: 1.1rem;
-  margin-bottom: 35px;
 }
 
-/* ---------- BUTTONS ---------- */
 .buttons {
   display: flex;
-  gap: 25px;
+  gap: 20px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
+/* BUTTONS */
 button {
-  padding: 15px 38px;
+  padding: 14px 32px;
   border-radius: 40px;
   font-size: 1rem;
   border: none;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 #yesBtn {
@@ -78,32 +77,27 @@ button {
 }
 
 #noBtn {
-  background: white;
-  color: #ff4d6d;
+  background: #555;
+  color: white;
+  position: relative;
 }
 
-/* ---------- CONFETTI ---------- */
-#confetti span {
+#crashBtn {
+  background: black;
+  color: red;
+  font-weight: bold;
+}
+
+/* FAKE CRASH SCREEN */
+#crashScreen {
   position: fixed;
-  top: -10px;
-  font-size: 20px;
-  animation: fall linear forwards;
-}
-
-/* ---------- ANIMATIONS ---------- */
-@keyframes pop {
-  0% { transform: scale(0.8); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes pulseBg {
-  0% { filter: brightness(1); }
-  100% { filter: brightness(1.2); }
-}
-
-@keyframes fall {
-  to {
-    transform: translateY(110vh) rotate(360deg);
-    opacity: 0;
-  }
+  inset: 0;
+  background: black;
+  color: red;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 2rem;
+  z-index: 999;
 }
