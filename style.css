@@ -1,123 +1,95 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
+/* ================= PAGE TWO ================= */
 
-/* ---------- PAGE ONE ---------- */
-.page-one {
-  height: 100vh;
-  background: linear-gradient(135deg, #ffd6e8, #ff9a9e);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 0.8s ease;
-}
-
-.fade-out {
-  opacity: 0;
-}
-
-.intro h1 {
-  font-size: 3rem;
-}
-
-.highlight {
-  color: #ff2f6d;
-  font-weight: 600;
-}
-
-.primary-btn {
-  padding: 16px 40px;
-  border-radius: 40px;
-  background: #ff2f6d;
-  color: white;
-  font-size: 1.1rem;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 15px 30px rgba(255,47,109,0.4);
-  transition: transform 0.2s;
-}
-
-.primary-btn:hover {
-  transform: scale(1.05);
-}
-
-/* ---------- PAGE TWO ---------- */
 .page-two {
   height: 100vh;
-  background: radial-gradient(circle at top, #ff4d6d, #14000a);
+  background: radial-gradient(circle at top, #ff2f68, #12000a);
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  position: relative;
 }
 
-/* floating hearts */
-.hearts::before {
-  content: "💖 💕 💗 💘 💓";
-  position: absolute;
-  width: 100%;
-  top: -10%;
-  text-align: center;
-  font-size: 3rem;
-  animation: float 8s linear infinite;
-  opacity: 0.15;
-}
-
-@keyframes float {
-  from { transform: translateY(0); }
-  to { transform: translateY(120vh); }
-}
-
-.container {
-  background: rgba(255,255,255,0.12);
-  backdrop-filter: blur(16px);
-  padding: 55px 75px;
+/* Glass card */
+.glass {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(18px);
   border-radius: 30px;
+  padding: 60px 80px;
   text-align: center;
-  color: white;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.45);
-  animation: pop 0.8s ease;
+  color: #fff;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.45);
+  animation: floatIn 1.2s ease;
 }
 
-@keyframes pop {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-h1 {
-  font-size: 2.7rem;
+.title {
+  font-size: 3rem;
   margin-bottom: 15px;
 }
 
-p {
+.subtitle {
+  opacity: 0.85;
   margin-bottom: 35px;
-  font-size: 1.1rem;
 }
 
+/* Buttons */
 .buttons {
   display: flex;
   gap: 30px;
   justify-content: center;
 }
 
-button.yes {
-  background: #ff2f6d;
-  color: white;
-  padding: 15px 40px;
+button {
+  padding: 16px 40px;
   border-radius: 40px;
-  font-size: 1rem;
   border: none;
+  font-size: 1.1rem;
   cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+button.yes {
+  background: linear-gradient(135deg, #ff4d6d, #ff9aa2);
+  color: white;
+}
+
+button.yes:hover {
+  transform: scale(1.15);
 }
 
 button.no {
-  background: transparent;
-  border: 2px solid white;
-  color: white;
-  padding: 15px 40px;
-  border-radius: 40px;
-  cursor: pointer;
+  background: #ffffff;
+  color: #ff2f68;
+}
+
+/* Floating hearts */
+.floating-hearts span {
+  position: absolute;
+  bottom: -50px;
+  font-size: 24px;
+  animation: floatUp linear infinite;
+  opacity: 0.8;
+}
+
+/* Animations */
+@keyframes floatUp {
+  from {
+    transform: translateY(0) scale(0.8);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-120vh) scale(1.3);
+    opacity: 0;
+  }
+}
+
+@keyframes floatIn {
+  from {
+    transform: translateY(40px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
 }
