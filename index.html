@@ -2,30 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Will You Be My Valentine?</title>
+  <title>For You 💗</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
 
-  <!-- Background Music -->
-  <audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
-    Your browser does not support audio.
-  </audio>
+<body class="page-one">
+  <div class="container intro">
+    <h1 class="glow">Hey… 💕</h1>
+    <p>I didn’t just buy something.</p>
+    <p>I <span class="highlight">built</span> this for you.</p>
 
-  <!-- Page Content -->
-  <div id="content">
-    <div class="container">
-      <h1>hi my angel baby ❤️</h1>
-      <p>Will you be my Valentine?</p>
-
-      <div class="buttons">
-        <button id="yesBtn">YES 💖</button>
-        <button id="noBtn">NO 😭</button>
-      </div>
-    </div>
+    <button id="startBtn" class="primary-btn">Open 💌</button>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    document.getElementById("startBtn").addEventListener("click", () => {
+      document.body.classList.add("fade-out");
+      setTimeout(() => {
+        window.location.href = "valentine.html";
+      }, 800);
+    });
+  </script>
 </body>
 </html>
