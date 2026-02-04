@@ -4,71 +4,75 @@ document.addEventListener("DOMContentLoaded", () => {
   const music = document.getElementById("bgMusic");
   const container = document.querySelector(".container");
 
-  let noCount = 0;
+  let yesClicks = 0;
 
-  const noMessages = [
-    "Hey 😠 that tickles",
-    "Wrong choice babe 😤",
-    "Try again 😏",
-    "NO is not an option 😌",
-    "You’re testing me 😑",
-    "Seriously?? 😭",
-    "Last warning 😈",
-    "Okay you asked for this 💀"
-  ];
-
-  // YES BUTTON — BIG PAYOFF
-  yesBtn.addEventListener("click", () => {
-    music.volume = 0.6;
-    music.play();
-
-    container.innerHTML = `
-      <h1>YAYYYY 💖💖💖</h1>
-      <p>I knew it 😌</p>
-      <p>You’re officially my Valentine 💕</p>
-      <div class="hearts"></div>
-    `;
-
-    startHeartRain();
-  });
-
-  // NO BUTTON — FUNNY CHAOS
-  noBtn.addEventListener("click", () => {
-    noCount++;
-
-    // Move button randomly
-    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-
+  // NO button chaos
+  noBtn.addEventListener("mouseenter", () => {
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
     noBtn.style.position = "absolute";
     noBtn.style.left = `${x}px`;
     noBtn.style.top = `${y}px`;
+    noBtn.innerText = ["NO 😭", "TRY AGAIN 😜", "MISS 😈", "LOL NOPE"][Math.floor(Math.random()*4)];
+  });
 
-    // Change text
-    noBtn.textContent = noMessages[noCount % noMessages.length];
+  // YES button troll → reward
+  yesBtn.addEventListener("click", () => {
+    yesClicks++;
 
-    // Shrink NO, grow YES
-    noBtn.style.transform = `scale(${Math.max(0.6, 1 - noCount * 0.08)})`;
-    yesBtn.style.transform = `scale(${1 + noCount * 0.15})`;
-
-    // Ultimate troll
-    if (noCount >= 7) {
-      noBtn.style.display = "none";
-      yesBtn.textContent = "OKAY FINE YES 💖";
+    if (yesClicks === 1) {
+      yesBtn.innerText = "ARE YOU SURE? 🤨";
+      shake(container);
+    } 
+    else if (yesClicks === 2) {
+      yesBtn.innerText = "LAST CHANCE 😏";
+      container.style.transform = "rotate(2deg)";
+    } 
+    else if (yesClicks === 3) {
+      startFinale();
     }
   });
 
-  // HEART RAIN
-  function startHeartRain() {
-    for (let i = 0; i < 40; i++) {
-      const heart = document.createElement("div");
-      heart.className = "floating-heart";
-      heart.textContent = "💖";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 2 + Math.random() * 3 + "s";
-      document.body.appendChild(heart);
+  function shake(el) {
+    el.style.animation = "shake 0.4s";
+    setTimeout(() => el.style.animation = "", 400);
+  }
 
-      setTimeout(() => heart.remove(), 5000);
+  function startFinale() {
+    music.volume = 0.7;
+    music.play();
+
+    container.innerHTML = `
+      <h1 class="big-text">YOU'RE STUCK WITH ME NOW 💍</h1>
+      <p>Happy Valentine's Day 💖</p>
+    `;
+
+    document.body.classList.add("pulse-bg");
+    launchConfetti();
+    heartRain();
+  }
+
+  // CONFETTI
+  function launchConfetti() {
+    for (let i = 0; i < 120; i++) {
+      const conf = document.createElement("div");
+      conf.className = "confetti";
+      conf.style.left = Math.random() * 100 + "vw";
+      conf.style.animationDelay = Math.random() * 2 + "s";
+      document.body.appendChild(conf);
+      setTimeout(() => conf.remove(), 5000);
     }
+  }
+
+  // HEART RAIN
+  function heartRain() {
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }, 200);
   }
 });
