@@ -28,6 +28,7 @@
   opacity: 0;
 }
 
+/* CARD */
 .container {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(18px);
@@ -79,16 +80,11 @@ button {
   color: white;
 }
 
-#fakeBtn {
-  background: #222;
-  color: #ffb3c6;
-}
-
 button:hover {
   transform: scale(1.1);
 }
 
-/* SHAKE EFFECT */
+/* SHAKE */
 .shake {
   animation: shake 0.3s;
 }
@@ -99,4 +95,25 @@ button:hover {
   50% { transform: translateX(6px); }
   75% { transform: translateX(-6px); }
   100% { transform: translateX(0); }
+}
+
+/* COUNTDOWN RED PULSE */
+.pulse-red {
+  animation: pulseRed 1s infinite;
+}
+
+@keyframes pulseRed {
+  0% { background-color: #ff4d6d; }
+  50% { background-color: #c9184a; }
+  100% { background-color: #ff4d6d; }
+}
+
+/* FINAL GLOW */
+.final-glow {
+  animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 20px rgba(255,77,109,0.5); }
+  to { box-shadow: 0 0 50px rgba(255,77,109,1); }
 }
