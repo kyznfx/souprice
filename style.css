@@ -5,9 +5,21 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* PAGE 2 BACKGROUND */
+body {
+  min-height: 100vh;
+  transition: opacity 0.8s ease;
+}
+
+/* PAGE 1 */
+.page-one {
+  background: linear-gradient(135deg, #ffd6e8, #ff9a9e);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* PAGE 2 */
 .page-two {
-  height: 100vh;
   background: radial-gradient(circle at top, #ff4d6d, #1a0011);
   display: flex;
   justify-content: center;
@@ -16,32 +28,29 @@
 }
 
 /* CARD */
-.container {
-  background: rgba(255, 255, 255, 0.12);
+.card {
+  background: rgba(255,255,255,0.15);
   backdrop-filter: blur(18px);
-  padding: 50px 70px;
+  padding: 55px 75px;
   border-radius: 30px;
   text-align: center;
   color: white;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-  transition: transform 0.2s;
+  box-shadow: 0 35px 70px rgba(0,0,0,0.45);
+  animation: pop 0.8s ease;
 }
 
-/* SHAKE EFFECT */
-.shake {
-  animation: shake 0.4s;
+@keyframes pop {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
-@keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-8px); }
-  50% { transform: translateX(8px); }
-  75% { transform: translateX(-8px); }
-  100% { transform: translateX(0); }
+.fade-out {
+  opacity: 0;
 }
 
+/* TEXT */
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.6rem;
   margin-bottom: 15px;
 }
 
@@ -50,6 +59,7 @@ p {
   font-size: 1.1rem;
 }
 
+/* BUTTONS */
 .buttons {
   display: flex;
   gap: 20px;
@@ -57,14 +67,13 @@ p {
   flex-wrap: wrap;
 }
 
-/* BUTTONS */
 button {
-  padding: 14px 32px;
+  padding: 14px 34px;
   border-radius: 40px;
-  font-size: 1rem;
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  font-size: 1rem;
+  transition: all 0.25s ease;
 }
 
 #yesBtn {
@@ -82,22 +91,46 @@ button {
   position: relative;
 }
 
-#crashBtn {
+#fakeCrash {
   background: black;
   color: red;
   font-weight: bold;
 }
 
-/* FAKE CRASH SCREEN */
+/* SHAKE */
+.shake {
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  50% { transform: translateX(8px); }
+  75% { transform: translateX(-8px); }
+  100% { transform: translateX(0); }
+}
+
+/* FLOATING HEART */
+.floating-heart {
+  font-size: 3rem;
+  animation: float 2s infinite ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+/* FAKE CRASH */
 #crashScreen {
   position: fixed;
   inset: 0;
   background: black;
   color: red;
   display: none;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  font-size: 2rem;
   z-index: 999;
 }
