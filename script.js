@@ -2,46 +2,73 @@ document.addEventListener("DOMContentLoaded", () => {
   const yesBtn = document.getElementById("yesBtn");
   const noBtn = document.getElementById("noBtn");
   const music = document.getElementById("bgMusic");
-  const card = document.querySelector(".card");
-  const hearts = document.getElementById("hearts-layer");
+  const container = document.querySelector(".container");
 
-  // Continuous floating hearts
-  setInterval(() => {
-    const heart = document.createElement("span");
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = 4 + Math.random() * 4 + "s";
-    hearts.appendChild(heart);
-    setTimeout(() => heart.remove(), 8000);
-  }, 400);
+  let noCount = 0;
 
-  // YES CLICK
+  const noMessages = [
+    "Hey 😠 that tickles",
+    "Wrong choice babe 😤",
+    "Try again 😏",
+    "NO is not an option 😌",
+    "You’re testing me 😑",
+    "Seriously?? 😭",
+    "Last warning 😈",
+    "Okay you asked for this 💀"
+  ];
+
+  // YES BUTTON — BIG PAYOFF
   yesBtn.addEventListener("click", () => {
     music.volume = 0.6;
     music.play();
 
-    card.innerHTML = `
-      <h1>YAYYYY 💕💖</h1>
-      <p>I knew it… I always knew 🥰</p>
-      <p>Happy Valentine’s Day ❤️</p>
+    container.innerHTML = `
+      <h1>YAYYYY 💖💖💖</h1>
+      <p>I knew it 😌</p>
+      <p>You’re officially my Valentine 💕</p>
+      <div class="hearts"></div>
     `;
 
-    for (let i = 0; i < 50; i++) {
-      const heart = document.createElement("span");
-      heart.innerHTML = "💖";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 2 + Math.random() * 2 + "s";
-      hearts.appendChild(heart);
-      setTimeout(() => heart.remove(), 4000);
+    startHeartRain();
+  });
+
+  // NO BUTTON — FUNNY CHAOS
+  noBtn.addEventListener("click", () => {
+    noCount++;
+
+    // Move button randomly
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+    noBtn.style.position = "absolute";
+    noBtn.style.left = `${x}px`;
+    noBtn.style.top = `${y}px`;
+
+    // Change text
+    noBtn.textContent = noMessages[noCount % noMessages.length];
+
+    // Shrink NO, grow YES
+    noBtn.style.transform = `scale(${Math.max(0.6, 1 - noCount * 0.08)})`;
+    yesBtn.style.transform = `scale(${1 + noCount * 0.15})`;
+
+    // Ultimate troll
+    if (noCount >= 7) {
+      noBtn.style.display = "none";
+      yesBtn.textContent = "OKAY FINE YES 💖";
     }
   });
 
-  // NO RUNS AWAY
-  noBtn.addEventListener("mouseover", () => {
-    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-    noBtn.style.position = "absolute";
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-  });
+  // HEART RAIN
+  function startHeartRain() {
+    for (let i = 0; i < 40; i++) {
+      const heart = document.createElement("div");
+      heart.className = "floating-heart";
+      heart.textContent = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 2 + Math.random() * 3 + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 5000);
+    }
+  }
 });
