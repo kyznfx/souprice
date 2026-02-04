@@ -5,22 +5,20 @@
   <title>Hi my Angel 💖</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="page-one">
 
-  <div class="card intro">
-    <div class="floating-heart">💞</div>
-    <h1>baby… 💗</h1>
+  <div class="container">
+    <h1>Baby… 💗</h1>
     <p>I made something just for you</p>
-    <button id="openBtn">Open 💌</button>
+    <button id="startBtn">Open 💌</button>
   </div>
 
   <script>
-    document.getElementById("openBtn").onclick = () => {
+    document.getElementById("startBtn").onclick = () => {
       document.body.classList.add("fade-out");
       setTimeout(() => {
         window.location.href = "valentine.html";
-      }, 800);
+      }, 600);
     };
   </script>
 
