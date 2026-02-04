@@ -1,18 +1,17 @@
-const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
-const crashBtn = document.getElementById("crashBtn");
+const noBtn = document.getElementById("noBtn");
+const fakeCrash = document.getElementById("fakeCrash");
 const card = document.getElementById("card");
 
-const errorSound = document.getElementById("errorSound");
-const boopSound = document.getElementById("boopSound");
+const boop = document.getElementById("boop");
+const error = document.getElementById("error");
 
-let noClicks = 0;
+let noCount = 0;
 
-/* NO BUTTON TELEPORT */
+/* NO BUTTON ROULETTE */
 noBtn.addEventListener("click", () => {
-  noClicks++;
-
-  errorSound.play();
+  noCount++;
+  error.play();
 
   card.classList.add("shake");
   setTimeout(() => card.classList.remove("shake"), 400);
@@ -24,22 +23,22 @@ noBtn.addEventListener("click", () => {
   noBtn.style.left = `${x}px`;
   noBtn.style.top = `${y}px`;
 
-  if (noClicks >= 5) {
-    noBtn.innerText = "JUST CLICK YES 😭";
+  if (noCount > 4) {
+    noBtn.innerText = "JUST SAY YES 😭";
   }
 });
 
-/* YES BUTTON (FINAL REWARD) */
+/* YES TROLL → REWARD */
 yesBtn.addEventListener("click", () => {
-  boopSound.play();
+  boop.play();
   card.innerHTML = `
-    <h1>🎉 YOU'RE STUCK WITH ME 💍</h1>
-    <p>No refunds. No returns. Lifetime warranty 😌</p>
+    <h1>🎉 YOU’RE STUCK WITH ME 💍</h1>
+    <p>No refunds. Lifetime subscription 😌</p>
   `;
 });
 
-/* FAKE CRASH BUTTON */
-crashBtn.addEventListener("click", () => {
+/* FAKE CRASH */
+fakeCrash.addEventListener("click", () => {
   const crash = document.getElementById("crashScreen");
   crash.style.display = "flex";
 
