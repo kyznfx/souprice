@@ -1,93 +1,70 @@
+let yesStage = 0;
+let countdownInterval = null;
+
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
-const crashBtn = document.getElementById("crashBtn");
-const bgMusic = document.getElementById("bgMusic");
-const noSound = document.getElementById("noSound");
-
-const card = document.getElementById("card");
 const title = document.getElementById("title");
 const subtitle = document.getElementById("subtitle");
-const effects = document.getElementById("effects");
+const card = document.getElementById("card");
+const music = document.getElementById("bgMusic");
 
-let yesStage = 0;
-let countdown;
-
-/* NO BUTTON */
-noBtn.addEventListener("click", () => {
-  noSound.currentTime = 0;
-  noSound.play();
-
-  card.classList.add("shake");
-  setTimeout(() => card.classList.remove("shake"), 300);
-
+// 🔴 NO BUTTON TROLL (kept!)
+noBtn.addEventListener("mouseover", () => {
+  const x = Math.random() * (window.innerWidth - noBtn.clientWidth);
+  const y = Math.random() * (window.innerHeight - noBtn.clientHeight);
   noBtn.style.position = "absolute";
-  noBtn.style.left = Math.random() * 80 + "vw";
-  noBtn.style.top = Math.random() * 80 + "vh";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
 });
 
-/* YES BUTTON — 3 STAGES */
+// 🟢 YES BUTTON LOGIC
 yesBtn.addEventListener("click", () => {
   yesStage++;
 
-  /* STAGE 1 — COUNTDOWN */
+  // 🟢 STAGE 1 — Countdown troll
   if (yesStage === 1) {
     let time = 5;
-    document.body.classList.add("pulse-red");
-    title.textContent = "DECISION LOCKING IN… ⏳";
+    title.textContent = "Confirming...";
     subtitle.textContent = time;
 
-    countdown = setInterval(() => {
+    countdownInterval = setInterval(() => {
       time--;
       subtitle.textContent = time;
 
-      if (time === 1) {
-        clearInterval(countdown);
-        document.body.classList.remove("pulse-red");
+      if (time === 0) {
+        clearInterval(countdownInterval);
         title.textContent = "Too slow 😜";
         subtitle.textContent = "Try again";
       }
-    }, 1000);
+    }, 800);
   }
 
-  /* STAGE 2 — TERMS */
+  // 🟡 STAGE 2 — Terms & Conditions
   else if (yesStage === 2) {
-    clearInterval(countdown);
-    card.innerHTML = `
-      <h1>Terms & Conditions 💌</h1>
-      <ul style="text-align:left;margin:20px auto;max-width:280px;">
-        <li>✔ Unlimited cuddles</li>
-        <li>✔ Lifetime commitment</li>
-        <li>✔ No refunds 😌</li>
-      </ul>
-      <button id="agreeBtn">I Agree 💕</button>
+    clearInterval(countdownInterval);
+    title.textContent = "Terms & Conditions 💌";
+    subtitle.innerHTML = `
+      ✔ Unlimited cuddles<br>
+      ✔ Lifetime commitment<br>
+      ✔ No refunds 😌
     `;
-    document.getElementById("agreeBtn").onclick = () => yesBtn.click();
+    yesBtn.textContent = "I Agree 💕";
+    card.classList.add("shake");
   }
 
-  /* STAGE 3 — FINAL */
+  // 🔴 STAGE 3 — FINAL CONFIRMATION
   else if (yesStage === 3) {
-    bgMusic.volume = 0.7;
-    bgMusic.play();
+    card.classList.remove("shake");
+    yesBtn.classList.add("shake", "glow");
+    yesBtn.textContent = "FINAL CONFIRMATION";
 
-    card.classList.add("final-glow");
-    card.innerHTML = `
-      <h1>💍 YOU’RE STUCK WITH ME 💍</h1>
-      <p>Happy Valentine’s Day ❤️</p>
-    `;
-
-    for (let i = 0; i < 80; i++) {
-      const s = document.createElement("span");
-      s.textContent = Math.random() > 0.5 ? "💖" : "❤️";
-      s.style.left = Math.random() * 100 + "vw";
-      effects.appendChild(s);
-      setTimeout(() => s.remove(), 3000);
-    }
+    setTimeout(() => {
+      title.textContent = "💍 YOU’RE STUCK WITH ME";
+      subtitle.textContent = "No refunds. Lifetime subscription 😏";
+      music.volume = 0.6;
+      music.play();
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
+    }, 600);
   }
-});
-
-/* CRASH BUTTON */
-crashBtn.addEventListener("click", () => {
-  const crash = document.getElementById("crashScreen");
-  crash.style.display = "flex";
-  setTimeout(() => crash.style.display = "none", 2500);
 });
