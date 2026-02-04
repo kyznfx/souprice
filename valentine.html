@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Will You Be My Valentine? ❤️</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="page-two">
 
+  <!-- ONLY MUSIC THAT PLAYS ON YES -->
   <audio id="bgMusic" loop>
     <source src="music.mp3" type="audio/mpeg">
   </audio>
 
+  <!-- Troll sound (NO button only) -->
+  <audio id="noSound">
+    <source src="https://www.soundjay.com/buttons/sounds/button-10.mp3" type="audio/mpeg">
+  </audio>
+
   <div class="container" id="card">
-    <h1 id="title">Will you be my Valentine? ❤️</h1>
-    <p id="subtitle">Choose wisely 😉</p>
+    <h1 id="question">Will you be my Valentine? ❤️</h1>
+    <p id="subtext">Choose wisely 😏</p>
 
     <div class="buttons">
-      <button id="yesBtn" class="yes">YES 💖</button>
-      <button id="noBtn" class="no">NO 😭</button>
+      <button id="yesBtn">YES 💖</button>
+      <button id="noBtn">NO 😭</button>
+      <button id="fakeBtn">💻 Crash?</button>
     </div>
   </div>
 
