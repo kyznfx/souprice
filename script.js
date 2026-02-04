@@ -49,4 +49,14 @@ fakeCrash.addEventListener("click", () => {
   setTimeout(() => {
     crash.style.display = "none";
   }, 3000);
+
+  document.addEventListener("click", () => {
+  if (!musicStarted && bgMusic) {
+    bgMusic.volume = 0.6;
+    bgMusic.play().catch(() => {});
+    musicStarted = true;
+  }
+}, { once: true });
+
 });
+
